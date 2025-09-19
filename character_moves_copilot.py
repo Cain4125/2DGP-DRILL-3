@@ -24,14 +24,15 @@ rect_path = [
     (400, 90), (CANVAS_WIDTH - 30, 90), (CANVAS_WIDTH - 30, CANVAS_HEIGHT - 30),
     (30, CANVAS_HEIGHT - 30), (30, 90), (400, 90)
 ]
-# 삼각형 경로 좌표 (시작점 포함)
+# 삼각형 경로 좌표 (이등변삼각형, 시작점 포함)
 tri_path = [
-    (400, 90), (CANVAS_WIDTH - 30, 90), (CANVAS_WIDTH // 2, CANVAS_HEIGHT - 30), (400, 90)
+    (400, 90), (770, 90), (400, 570), (30, 90), (400, 90)
 ]
-# 원 경로 정보
-CIRC_CENTER_X, CIRC_CENTER_Y = CANVAS_WIDTH // 2, (CANVAS_HEIGHT + 90) // 2
-CIRC_RADIUS = min(CANVAS_WIDTH, CANVAS_HEIGHT - 90) // 2 - 30
-CIRC_START_ANGLE = math.atan2(90 - CIRC_CENTER_Y, 400 - CIRC_CENTER_X)
+# 원 경로 정보 (400,90에서 시작해 한 바퀴 돌고 돌아오도록)
+CIRC_CENTER_X = 400
+CIRC_CENTER_Y = 330  # 90에서 240만큼 위
+CIRC_RADIUS = 240
+CIRC_START_ANGLE = -math.pi / 2  # (400,90)에서 위쪽 방향
 
 state = STATE_RECT
 running = True
@@ -94,7 +95,7 @@ while running:
         x = CIRC_CENTER_X + CIRC_RADIUS * math.cos(circ_angle)
         y = CIRC_CENTER_Y + CIRC_RADIUS * math.sin(circ_angle)
         # 한 바퀴 돌고 시작점 근처면 종료
-        if abs(x - CHAR_START_X) < SPEED and abs(y - CHAR_START_Y) < SPEED and circ_angle < CIRC_START_ANGLE:
+        if circ_angle <= CIRC_START_ANGLE - 2 * math.pi:
             x, y = CHAR_START_X, CHAR_START_Y
             state = STATE_RECT
 
