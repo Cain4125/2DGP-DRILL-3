@@ -44,7 +44,37 @@ def rectangle_move():
         delay(0.001) #(800,310)
 
 def triangle_move():
-    pass
+    global x,y
+    while x < 785:
+        clear_canvas()
+        grass.draw(400, 30)
+        character.draw(x,y)
+        update_canvas()
+        x = x + 2
+        delay(0.001)
+    while x>400:
+        clear_canvas()
+        grass.draw(400, 30)
+        character.draw(x,y)
+        update_canvas()
+        x = x - 2.14
+        y = y + 2.5
+        delay(0.001)
+    while x>15:
+        clear_canvas()
+        grass.draw(400, 30)
+        character.draw(x,y)
+        update_canvas()
+        x = x - 2.14
+        y = y - 2.5
+        delay(0.001)
+    while x < 400:
+        clear_canvas()
+        grass.draw(400, 30)
+        character.draw(x,y)
+        update_canvas()
+        x = x + 2
+        delay(0.001)
 
 def circle_move():
     pass
