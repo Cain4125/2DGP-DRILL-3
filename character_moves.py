@@ -77,7 +77,20 @@ def triangle_move():
         delay(0.001)
 
 def circle_move():
-    pass
+    global x,y
+    start_x, start_y = x, y
+    r = 230
+    cx = start_x
+    cy = start_y + r
+    for a in range(270, -90, -1):
+        rad = math.radians(a)
+        x = cx + r * math.cos(rad)
+        y = cy + r * math.sin(rad)
+        clear_canvas()
+        grass.draw(400, 30)
+        character.draw(x, y)
+        update_canvas()
+        delay(0.001)
 
 while True:
     rectangle_move()
